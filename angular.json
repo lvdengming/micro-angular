@@ -31,13 +31,7 @@
             ],
             "styles": ["src/styles.less"],
             "scripts": [],
-            "main": "src/main.single-spa.ts",
-            "customWebpackConfig": {
-              "path": "config/extra-webpack.config.js",
-              "libraryName": "micro-angular",
-              "libraryTarget": "umd"
-            },
-            "deployUrl": "http://localhost:8001/"
+            "main": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -73,7 +67,7 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "port": 8001
+            "port": 4200
           },
           "configurations": {
             "production": {

@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "serve": "node scripts/launch.mjs --standalone && ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build:micro": "ng build micro-angular --configuration production",
-    "serve:micro": "ng s --project micro-angular --disable-host-check --port 8001 --live-reload false"
+    "serve:micro": "node scripts/launch.mjs && ng s --project micro-angular --disable-host-check --port 8001 --live-reload false",
+    "build:micro": "ng build micro-angular --configuration production"
   },
   "private": true,
   "dependencies": {
@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
+    "chalk": "^5.6.2",
     "rxjs": "~7.8.0",
     "single-spa": ">=4.0.0",
     "single-spa-angular": "9.2.0",
@@ -38,8 +39,13 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "prettier": "^3.8.1",
     "style-loader": "^3.3.1",
     "typescript": "~5.5.2"
+  },
+  "ports": {
+    "standalone": 4200,
+    "micro": 8001
   },
   "prettier": {
     "printWidth": 80,
