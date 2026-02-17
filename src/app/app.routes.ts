@@ -2,13 +2,13 @@
  * @Author: lvdengming@foxmail.com
  * @Date: 2026-01-25 18:44:20
  * @LastEditors: lvdengming@foxmail.com
- * @LastEditTime: 2026-02-16 22:51:46
+ * @LastEditTime: 2026-02-17 09:59:05
  */
 import { Routes } from '@angular/router';
 
 export enum RoutePath {
-  Home = 'home',
-  Detail = 'detail',
+  Home = 'angular-home',
+  Detail = 'angular-detail',
 }
 
 export const routes: Routes = [
