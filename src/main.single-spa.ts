@@ -1,3 +1,9 @@
+/*
+ * @Author: lvdengming@foxmail.com
+ * @Date: 2026-02-17 08:52:03
+ * @LastEditors: lvdengming@foxmail.com
+ * @LastEditTime: 2026-02-18 10:52:36
+ */
 import { enableProdMode, NgZone } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { NavigationStart, Router } from '@angular/router';
@@ -16,7 +22,7 @@ if (config.production) {
 
 const lifecycles = singleSpaAngular({
   bootstrapFunction: (singleSpaProps) => {
-    singleSpaPropsSubject.next(singleSpaProps);
+    singleSpaPropsSubject.next(singleSpaProps as never);
 
     return bootstrapApplication(AppComponent, {
       providers: [

@@ -2,6 +2,20 @@
  * @Author: lvdengming@foxmail.com
  * @Date: 2026-01-25 18:44:20
  * @LastEditors: lvdengming@foxmail.com
- * @LastEditTime: 2026-02-16 22:47:32
+ * @LastEditTime: 2026-02-18 10:47:34
 -->
 <router-outlet></router-outlet>
+
+<div class="actions-wrapper">
+  <button (click)="sendData()">Send Data</button>
+</div>
+
+<div class="micro-states-wrapper">
+  @for (state of common.states; track $index) {
+    <p class="micro-state-item">
+      <span>[{{ state.timeStr }}] </span>
+      <span>{{ state.from }}: </span>
+      <span>{{ state.data }}</span>
+    </p>
+  }
+</div>

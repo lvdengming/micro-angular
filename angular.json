@@ -9,6 +9,9 @@
         "@schematics/angular:component": {
           "style": "less",
           "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
         }
       },
       "root": "",
@@ -31,7 +34,13 @@
             ],
             "styles": ["src/styles.less"],
             "scripts": [],
-            "main": "src/main.ts"
+            "main": "src/main.single-spa.ts",
+            "customWebpackConfig": {
+              "path": "config/extra-webpack.config.js",
+              "libraryName": "micro-angular",
+              "libraryTarget": "umd"
+            },
+            "deployUrl": "http://localhost:8001/"
           },
           "configurations": {
             "production": {
@@ -67,7 +76,7 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "port": 4200
+            "port": 8001
           },
           "configurations": {
             "production": {
