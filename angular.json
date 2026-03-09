@@ -40,7 +40,7 @@
               "libraryName": "micro-angular",
               "libraryTarget": "umd"
             },
-            "deployUrl": "http://localhost:8001/"
+            "deployUrl": "http://8.141.84.169:8001/"
           },
           "configurations": {
             "production": {
