@@ -56,7 +56,7 @@
                   "maximumError": "4kB"
                 }
               ],
-              "outputHashing": "none",
+              "outputHashing": "all",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
