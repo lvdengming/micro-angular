@@ -28,8 +28,14 @@
             "inlineStyleLanguage": "less",
             "assets": [
               {
+                "input": "public",
                 "glob": "**/*",
-                "input": "public"
+                "output": ""
+              },
+              {
+                "input": "node_modules/zone.js/bundles",
+                "glob": "zone.umd.min.js",
+                "output": "/externals"
               }
             ],
             "styles": ["src/styles.less"],

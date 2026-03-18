@@ -2,7 +2,7 @@
  * @Author: lvdengming@foxmail.com
  * @Date: 2026-01-25 18:44:20
  * @LastEditors: lvdengming@foxmail.com
- * @LastEditTime: 2026-02-16 22:51:32
+ * @LastEditTime: 2026-03-18 23:10:34
 -->
 <!doctype html>
 <html lang="en">
@@ -15,5 +15,8 @@
   </head>
   <body>
     <micro-angular></micro-angular>
+
+    <!-- qiankun 不会加载 ignore 属性标识的资源（社区通用，官网没介绍） -->
+    <script src="externals/zone.umd.min.js" ignore></script>
   </body>
 </html>
