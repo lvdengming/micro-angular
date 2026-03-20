@@ -5,10 +5,15 @@
  * @LastEditTime: 2026-02-18 11:08:52
  */
 import { DatePipe } from '@angular/common';
-import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { CommonService } from '../services/common.service';
 import {
   GlobalState,
   SingleSpaProps,
@@ -23,16 +28,20 @@ import {
   imports: [RouterOutlet],
   providers: [DatePipe],
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent implements OnInit, OnDestroy {
+  /** 微前端全局状态 */
+  public readonly globalStates = signal<GlobalState[]>([]);
+
   private readonly __destroy$ = new Subject<void>();
 
   private __props!: SingleSpaProps;
 
   constructor(
-    public readonly common: CommonService,
-    private readonly __cdr: ChangeDetectorRef,
     private readonly __date: DatePipe,
-  ) {
+    private readonly __cdr: ChangeDetectorRef,
+  ) {}
+
+  ngOnInit(): void {
     singleSpaPropsSubject
       .pipe(takeUntil(this.__destroy$))
       .subscribe((props: SingleSpaProps) => {
@@ -48,6 +57,7 @@ export class AppComponent implements OnDestroy {
 
   /** 发送数据到微前端 */
   public sendData(): void {
+    // setGlobalState 是 Object.assign 方式，订阅者会拿到合并后的全局状态
     const state: GlobalState = {
       from: 'angular',
       timeStr: this.__getTimeStr(),
@@ -57,12 +67,18 @@ export class AppComponent implements OnDestroy {
     this.__props.setGlobalState(state);
   }
 
-  /** 监听微前端状态变化 */
+  /**
+   * 监听微前端状态变化
+   *
+   * 第二个参数 fireImmediately 为 true，表示立即执行一次回调，获取初始状态
+   */
   private __initGlobalStateChange(): void {
     this.__props.onGlobalStateChange((state: Record<string, any>) => {
-      this.common.states.unshift(state as GlobalState);
+      const states = [state as GlobalState, ...this.globalStates()];
+      this.globalStates.set(states);
+
       this.__cdr.detectChanges();
-    });
+    }, true);
   }
 
   /** 获取时间字符串 */

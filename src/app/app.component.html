@@ -11,7 +11,7 @@
 </div>
 
 <div class="micro-states-wrapper">
-  @for (state of common.states; track $index) {
+  @for (state of globalStates(); track $index) {
     <p class="micro-state-item">
       <span>[{{ state.timeStr }}] </span>
       <span>{{ state.from }}: </span>
